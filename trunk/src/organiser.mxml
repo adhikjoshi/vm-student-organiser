@@ -1,0 +1,65 @@
+<!--
+File:			organiser.mxml
+Date:			07.01.2011
+Author:			Joshua Lau
+Description:	Main file which controls layout of the application and includes script files.
+-->
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" windowComplete="readAll();runTimer();" closing="writeAll();" >
+
+<mx:Script>
+	<![CDATA[
+		include "sharedLibrary.as"
+		include "handleSubjects.as"
+		include "handleNotes.as"
+		include "control.as"
+		include "clock.as"
+	]]>
+</mx:Script>
+
+<mx:Image id="topBarImg" x="25" y="25" source="@Embed(source='../assets/topbarcropped.png')" />
+<mx:Label id="headerLabel" fontFamily="MyriadPro" fontSize="20" x="30" y="30" color="white" text="12.52 | Wednesday B | 17 November 2010" />
+
+<mx:VBox id="contentArea"
+	x="300" y="150"
+	width="610" height="440"
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="off">
+
+	<mx:TabNavigator id="contentStack"
+		x="300" y="150"
+		width="610" height="300"
+		selectedIndex="0"
+		creationPolicy="all">
+		
+		<mx:Canvas label="Diary">
+			<mx:DateField id="dateSelector" x="10" width="100" editable="true" formatString="DD/MM/YYYY" change="useDate(event);"/>
+			<mx:DataGrid id="diaryEntries"
+				x="10" y="25"
+				dataProvider="{curDayTasks.period}" 
+				editable="true"
+				rowCount="8"
+				itemEditEnd="writeDayTasks();">
+	
+				<mx:columns>
+					<mx:DataGridColumn dataField="subject" editable="false" headerText="Subject" width="100" />
+					<mx:DataGridColumn dataField="tasks" editable="true" headerText="Tasks" width="475" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:Canvas>
+	
+		<mx:Canvas label="Notes">
+			<mx:Label x="10" width="100%" color="black" text="Type random notes, thoughts or anything else in this autosaving box." />
+			<mx:TextArea id="notesArea"
+				x="10" y="20"
+				width="500" height="200"
+				verticalScrollPolicy="auto"
+				text="" />
+		</mx:Canvas>
+		
+	</mx:TabNavigator>
+</mx:VBox>
+	
+</mx:WindowedApplication>
