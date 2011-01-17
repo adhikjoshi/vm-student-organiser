@@ -17,7 +17,7 @@ public var isHols:Boolean;
 private function runTimer():void {
 	// makes a timer that ticks once per second
 	// for infinity
-	var secondTimer = new Timer(1000);
+	var secondTimer:Timer = new Timer(1000);
 	
 	// runs runEverySecond() once per second
 	secondTimer.addEventListener(TimerEvent.TIMER,runEverySecond);
@@ -33,7 +33,7 @@ private function getTimeString():String {
 	return ((padNum(now.getHours()%12)+1) + "." + padNum(now.getMinutes()));
 }
 
-private function findWeekDetails(termStartDate,termStartWeekType):void {
+private function findWeekDetails(termStartDate:Date,termStartWeekType:Boolean):void {
 	weekType = termStartWeekType;
 	weekNum = 1;
 	
