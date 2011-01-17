@@ -1,11 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 File:			organiser.mxml
 Date:			07.01.2011
 Author:			Joshua Lau
 Description:	Main file which controls layout of the application and includes script files.
 -->
-
-<?xml version="1.0" encoding="utf-8"?>
 
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" windowComplete="readAll();runTimer();" closing="writeAll();" >
 
