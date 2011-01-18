@@ -1,0 +1,13 @@
+#summary Updates on early development.
+
+= Introduction =
+
+So we've kicked development off and it's going well. We thought you'd like to see what we've got so far. It looks a bit bare at the moment with the sidebar missing, and the header bar style isn't yet complete. But the main content pane is being pieced together. Enjoy!
+
+= Screenies =
+
+[http://code.google.com/p/vm-student-organiser/source/browse/trunk/screens/organiser005.png]
+
+[http://code.google.com/p/vm-student-organiser/source/browse/trunk/screens/organiser006.png]
+
+[http://code.google.com/p/vm-student-organiser/source/browse/trunk/screens/organiser007.png]
