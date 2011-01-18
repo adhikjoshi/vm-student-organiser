@@ -6,6 +6,7 @@
 import flash.filesystem.*
 import flash.utils.Timer
 import flash.events.TimerEvent
+import mx.controls.DateField
 
 private var now:Date;
 
@@ -15,8 +16,9 @@ public var weekType:Boolean;
 public var weekNum:Number;
 public var isHols:Boolean;
 
-var refDate:Date;
-var termDatesFile:String = "Organiser/termDates.xml";
+private var refDate:Date;
+private var termNum:Number;
+private var termDatesFile:String = "Organiser/termDates.xml";
 public var refFile:XML;
 
 private function runTimer():void {
@@ -30,12 +32,23 @@ private function runTimer():void {
 }
 
 private function runEverySecond(event:TimerEvent):void {
+	updateHeaderBar();	
+}
+
+private function updateHeaderBar():void {
 	now = new Date();
-	headerLabel.text = getTimeString() + " " + weekNum;
+	getRefDate();
+	
+	if(isHols == false) {
+		findWeekDetails(refDate,true);
+		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Term " + String(termNum) + ", Week " + String(weekNum) + getWeekTypeString() + " | " + getDayString(now);
+	} else {
+		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Holidays | " + getDayString(now);
+	}
 }
 
 private function getTimeString():String {
-	return ((padNum(now.getHours()%12)+1) + "." + padNum(now.getMinutes()));
+	return ((padNum(now.getHours()%12)) + "." + padNum(now.getMinutes()));
 }
 
 private function getRefFile():void {
@@ -43,16 +56,42 @@ private function getRefFile():void {
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file,FileMode.READ);
 	refFile = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
-	trace(refFile):
 	fileStream.close();
 }
 
-private function getYearIndex():Number{
+private function getRefDate():void {
+	var yearIndex:Number = getYearIndex();
+	var termIndex:Number = getTermIndex(yearIndex);
+	
+	termNum = termIndex + 1;
+	
+	if(isHols == false) {
+		refDate = DateField.stringToDate(refFile.year[yearIndex].term[termIndex].start,"YYYY/MM/DD");
+	}
+}
+
+private function getYearIndex():Number {
 	var thisYearIndex:Number;
 	for(thisYearIndex=0;thisYearIndex < refFile.firstChild.children().length && refFile.firstChild.children()[thisYearIndex].attribute("num")!=now.getFullYear();thisYearIndex++) {
 		// random comment here
 	}
 	return thisYearIndex;
+}
+
+private function getTermIndex(yearIndex:Number):Number {
+	var termIndex:Number;
+	isHols = false;
+	for(termIndex=0;termIndex < refFile.year[yearIndex].term.length();termIndex++) {
+		var start:String = refFile.year[yearIndex].term[termIndex].start;
+		var end:String = refFile.year[yearIndex].term[termIndex].end;
+
+		var thisDay:String = dateToString(now);
+		if(start <= thisDay && thisDay <= end) {
+			return termIndex;
+		}
+	}
+	isHols = true;
+	return termIndex;
 }
 
 private function findWeekDetails(termStartDate:Date,termStartWeekType:Boolean):void {
@@ -62,6 +101,7 @@ private function findWeekDetails(termStartDate:Date,termStartWeekType:Boolean):v
 	var curDate:Date = termStartDate;
 	
 	while(curDate < now) {
+		trace(curDate);
 		curDate.setDate(curDate.getDate()+1);
 		if(curDate.getDay() == 1) {
 			// make weekly changes on mondays
@@ -73,4 +113,12 @@ private function findWeekDetails(termStartDate:Date,termStartWeekType:Boolean):v
 private function turnWeek():void {
 	weekType = !(weekType);
 	weekNum++;
+}
+
+private function getWeekTypeString():String {
+	if(weekType == true) {
+		return "A";
+	} else {
+		return "B";
+	}
 }

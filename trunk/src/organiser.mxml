@@ -7,7 +7,7 @@ Author:			Joshua Lau
 Description:	Main file which controls layout of the application and includes script files.
 -->
 
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" windowComplete="readAll();runTimer();" closing="writeAll();" >
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" windowComplete="readAll();" closing="writeAll();" >
 
 <mx:Script>
 	<![CDATA[
@@ -18,6 +18,8 @@ Description:	Main file which controls layout of the application and includes scr
 		include "clock.as"
 	]]>
 </mx:Script>
+
+<mx:Style source="../fonts/embeddedFonts.css" />
 
 <mx:Image id="topBarImg" x="25" y="25" source="@Embed(source='../assets/topbarcropped.png')" />
 <mx:Label id="headerLabel" fontFamily="MyriadPro" fontSize="20" x="30" y="30" color="white" text="12.52 | Wednesday B | 17 November 2010" />
