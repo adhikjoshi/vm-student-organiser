@@ -11,3 +11,5 @@ So we've kicked development off and it's going well. We thought you'd like to se
 [http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser006.png]
 
 [http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser007.png]
+
+Please post comments, opinions suggestions below. Thanks!
