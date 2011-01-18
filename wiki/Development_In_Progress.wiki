@@ -6,4 +6,8 @@ So we've kicked development off and it's going well. We thought you'd like to se
 
 = Screenies =
 
-[http://code.google.com/p/vm-student-organiser/source/browse/trunk/screens/organiser005.png]
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser005.png]
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser006.png]
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser007.png]
