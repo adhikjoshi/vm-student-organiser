@@ -21,3 +21,16 @@ public function dateToString(dateToConvert:Date):String {
 	
 	return String(yearNum) + "/" + padNum(monthNum) + "/" + padNum(dateNum);
 }
+
+// converts a date object into a string with format
+// <date> <month name> <full year>
+public function getDayString(dateToConvert:Date):String {
+	var months:Array = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	return String(dateToConvert.getDate()) + " " + months[dateToConvert.getMonth()] + " " + String(dateToConvert.getFullYear());
+}
+
+// converts a date object into a string with day's name
+public function getDayNameString(dateToConvert:Date):String {
+	var days:Array = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+	return days[dateToConvert.getDay()];
+}
