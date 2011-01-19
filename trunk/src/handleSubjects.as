@@ -20,7 +20,6 @@ public var curDay:Number;
 private var subjectsFile:String = "Organiser/subjects.xml";
 private var subjectsXMLRootOpen:String = "<wrapper>\n";
 private var subjectsXMLRootClose:String = "\n</wrapper>\n";
-private var utfHeader:String = '<?xml version="1.0" encoding="utf-8"?>\n';
 private var subjectsData:XML;
 
 public function readSubjectsXML():void {
