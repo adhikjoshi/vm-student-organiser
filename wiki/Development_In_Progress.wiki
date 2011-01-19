@@ -12,4 +12,8 @@ So we've kicked development off and it's going well. We thought you'd like to se
 
 [http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser007.png]
 
+*New feature:* User details preference tab added. (updated 15.44 19.01.2011)
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser008.png]
+
 Please post comments, opinions suggestions below. Thanks!
