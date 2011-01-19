@@ -29,7 +29,7 @@ private function saveUserDetails():void {
 }
 
 private function displayUserDetails():void {
-	userInfoLabel.text = "Personal Organiser for: " + userName + " (" + osUserName + ") Class: " + userClass;
+	userInfoLabel.text = userName + " (" + osUserName + ") | " + userClass;
 }
 
 private function getUserNamePrefs():void {
