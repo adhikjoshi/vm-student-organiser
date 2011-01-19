@@ -1,0 +1,7 @@
+#summary Screenshots of the design changes
+
+= Introduction =
+
+We've changed the look of the UI interface. Check out the screenshots.
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser009.png]
