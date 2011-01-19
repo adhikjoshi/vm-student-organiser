@@ -16,13 +16,17 @@ Description:	Main file which controls layout of the application and includes scr
 		include "handleNotes.as"
 		include "control.as"
 		include "clock.as"
+		include "prefs.as"
 	]]>
 </mx:Script>
 
 <mx:Style source="../fonts/embeddedFonts.css" />
 
-<mx:Image id="topBarImg" x="25" y="25" source="@Embed(source='../assets/topbarcropped.png')" />
-<mx:Label id="headerLabel" fontFamily="MyriadPro" fontSize="20" x="30" y="30" color="white" text="12.52 | Wednesday B | 17 November 2010" />
+<mx:Canvas x="50" y="25">
+	<mx:Image id="topBarImg" source="@Embed(source='../assets/topbarcropped.png')" />
+	<mx:Label id="headerLabel" fontFamily="MyriadPro" fontSize="20" x="10" y="10" color="white" />
+	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="10" y="60" color="white" />
+</mx:Canvas>
 
 <mx:VBox id="contentArea"
 	x="300" y="150"
@@ -44,7 +48,7 @@ Description:	Main file which controls layout of the application and includes scr
 				editable="true"
 				rowCount="8"
 				itemEditEnd="writeDayTasks();">
-	
+					
 				<mx:columns>
 					<mx:DataGridColumn dataField="subject" editable="false" headerText="Subject" width="100" />
 					<mx:DataGridColumn dataField="tasks" editable="true" headerText="Tasks" width="475" />
@@ -59,6 +63,22 @@ Description:	Main file which controls layout of the application and includes scr
 				width="500" height="200"
 				verticalScrollPolicy="auto"
 				text="" />
+		</mx:Canvas>
+		
+		<mx:Canvas label="Preferences">
+			<mx:Form id="userDetails" borderStyle="solid" x="20" y="10">
+				<mx:FormItem label="Name">
+					<mx:TextInput id="userNameField" />
+				</mx:FormItem>
+
+				<mx:FormItem label="Class">
+					<mx:ComboBox id="classField" dataProvider="{classList}" />
+				</mx:FormItem>
+				
+				<mx:FormItem>
+					<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();" />
+				</mx:FormItem>
+			</mx:Form>
 		</mx:Canvas>
 		
 	</mx:TabNavigator>

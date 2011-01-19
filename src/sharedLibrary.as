@@ -3,6 +3,8 @@
 // Author:			Joshua Lau
 // Description:		A collection of shared functions used throughout the application.
 
+public var utfHeader:String = '<?xml version="1.0" encoding="utf-8"?>\n';
+
 // pads a number to 2 digits
 public function padNum(numToPad:Number):String {
 	var finalString:String = String(numToPad);
