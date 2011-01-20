@@ -7,7 +7,13 @@ Author:			Joshua Lau
 Description:	Main file which controls layout of the application and includes script files.
 -->
 
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" windowComplete="readAll();" closing="writeAll();" >
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	windowComplete="readAll();" 
+	closing="writeAll();" 
+	horizontalScrollPolicy="off" 
+	verticalScrollPolicy="off" 
+	showStatusBar="false">
 
 <mx:Script>
 	<![CDATA[
@@ -17,27 +23,33 @@ Description:	Main file which controls layout of the application and includes scr
 		include "control.as"
 		include "clock.as"
 		include "prefs.as"
+		include "subjectListing.as"
 	]]>
 </mx:Script>
 
 <mx:Style source="../fonts/embeddedFonts.css" />
 
-<mx:Canvas x="50" y="25">
-	<mx:Image id="topBarImg" source="@Embed(source='../assets/topbarcropped.png')" />
+<!-- Background Image (grad fill) -->
+<mx:Image id="backgroundImage" source="@Embed(source='../assets/background.png')" />
+
+<mx:Canvas x="47" y="25">
+	<!-- top bar images -->
+	<mx:Image id="topTopBarImg" source="@Embed(source='../assets/topbar1.png')" />
+	<mx:Image id="bottomTopBarImg" source="@Embed(source='../assets/topbar2.png')" x="40" y="55" />
+	
 	<mx:Label id="headerLabel" fontFamily="MyriadPro" fontSize="20" x="10" y="10" color="white" />
-	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="10" y="60" color="white" />
+	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="50" y="62" color="white" />
 </mx:Canvas>
 
 <mx:VBox id="contentArea"
 	x="300" y="150"
-	width="610" height="440"
 	horizontalScrollPolicy="off"
 	verticalScrollPolicy="off">
 
 	<mx:TabNavigator id="contentStack"
 		x="300" y="150"
-		width="610" height="300"
-		selectedIndex="0"
+		width="610" height="440"
+		selectedIndex="2"
 		creationPolicy="all">
 		
 		<mx:Canvas label="Diary">
@@ -66,7 +78,7 @@ Description:	Main file which controls layout of the application and includes scr
 		</mx:Canvas>
 		
 		<mx:Canvas label="Preferences">
-			<mx:Form id="userDetails" borderStyle="solid" x="20" y="10">
+			<mx:Form id="userDetails" borderStyle="solid" x="10" y="0">
 				<mx:FormItem label="Name">
 					<mx:TextInput id="userNameField" />
 				</mx:FormItem>
@@ -79,6 +91,27 @@ Description:	Main file which controls layout of the application and includes scr
 					<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();" />
 				</mx:FormItem>
 			</mx:Form>
+			
+			<mx:DataGrid id="subjectChooser" 
+				x="10" y="125"
+				dataProvider="{curDisplayList}"
+				editable="true"
+				rowCount="10"
+				verticalScrollPolicy="off">
+				<mx:columns>
+					<mx:DataGridColumn dataField="periodName" headerText="" width="20" />
+					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="55" />
+					<mx:DataGridColumn dataField="day1" headerText="Tue A" width="55" />
+					<mx:DataGridColumn dataField="day2" headerText="Wed A" width="55" />
+					<mx:DataGridColumn dataField="day3" headerText="Thu A" width="55" />
+					<mx:DataGridColumn dataField="day4" headerText="Fri A" width="55" />
+					<mx:DataGridColumn dataField="day5" headerText="Mon B" width="55" />
+					<mx:DataGridColumn dataField="day6" headerText="Tue B" width="55" />
+					<mx:DataGridColumn dataField="day7" headerText="Wed B" width="55" />
+					<mx:DataGridColumn dataField="day8" headerText="Thu B" width="55" />
+					<mx:DataGridColumn dataField="day9" headerText="Fri B" width="55" />
+				</mx:columns>
+			</mx:DataGrid>
 		</mx:Canvas>
 		
 	</mx:TabNavigator>
