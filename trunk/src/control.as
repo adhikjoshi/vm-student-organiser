@@ -6,13 +6,10 @@ public function readAll():void {
 	getUserNamePrefs();
 	
 	readPeriods();
-	convertPeriodsToDisplay();
 	
 	getRefFile();
 	updateHeaderBar();
 	runTimer();
-	
-	subjectChooser.height = subjectChooser.measureHeightOfItems(0, 10) + subjectChooser.headerHeight;
 }
 
 public function writeAll():void {
