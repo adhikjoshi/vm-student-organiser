@@ -48,7 +48,7 @@ Description:	Main file which controls layout of the application and includes scr
 
 	<mx:TabNavigator id="contentStack"
 		x="300" y="150"
-		width="610" height="440"
+		width="610" height="415"
 		selectedIndex="2"
 		creationPolicy="all">
 		
@@ -79,13 +79,15 @@ Description:	Main file which controls layout of the application and includes scr
 		
 		<mx:Canvas label="Preferences">
 			<mx:Form id="userDetails" borderStyle="solid" x="10" y="0">
-				<mx:FormItem label="Name">
-					<mx:TextInput id="userNameField" />
-				</mx:FormItem>
+				<mx:HBox>
+					<mx:FormItem label="Name">
+						<mx:TextInput id="userNameField" />
+					</mx:FormItem>
 
-				<mx:FormItem label="Class">
-					<mx:ComboBox id="classField" dataProvider="{classList}" />
-				</mx:FormItem>
+					<mx:FormItem>
+						<mx:ComboBox id="classField" dataProvider="{classList}" />
+					</mx:FormItem>
+				</mx:HBox>
 				
 				<mx:FormItem>
 					<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();" />
@@ -93,7 +95,7 @@ Description:	Main file which controls layout of the application and includes scr
 			</mx:Form>
 			
 			<mx:DataGrid id="subjectChooser" 
-				x="10" y="125"
+				x="10" y="100"
 				dataProvider="{curDisplayList}"
 				editable="true"
 				rowCount="10"
