@@ -42,13 +42,13 @@ Description:	Main file which controls layout of the application and includes scr
 </mx:Canvas>
 
 <mx:VBox id="contentArea"
-	x="300" y="150"
+	x="250" y="150"
 	horizontalScrollPolicy="off"
 	verticalScrollPolicy="off">
 
 	<mx:TabNavigator id="contentStack"
-		x="300" y="150"
-		width="610" height="415"
+		x="230" y="150"
+		width="690" height="415"
 		selectedIndex="2"
 		creationPolicy="all">
 		
@@ -88,32 +88,30 @@ Description:	Main file which controls layout of the application and includes scr
 						<mx:ComboBox id="classField" dataProvider="{classList}" />
 					</mx:FormItem>
 				</mx:HBox>
-				
-				<mx:FormItem>
-					<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();" />
-				</mx:FormItem>
 			</mx:Form>
 			
 			<mx:DataGrid id="subjectChooser" 
-				x="10" y="100"
-				dataProvider="{curDisplayList}"
+				x="10" y="65"
+				dataProvider="{curDisplay.period}"
 				editable="true"
 				rowCount="10"
 				verticalScrollPolicy="off">
 				<mx:columns>
 					<mx:DataGridColumn dataField="periodName" headerText="" width="20" />
-					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="55" />
-					<mx:DataGridColumn dataField="day1" headerText="Tue A" width="55" />
-					<mx:DataGridColumn dataField="day2" headerText="Wed A" width="55" />
-					<mx:DataGridColumn dataField="day3" headerText="Thu A" width="55" />
-					<mx:DataGridColumn dataField="day4" headerText="Fri A" width="55" />
-					<mx:DataGridColumn dataField="day5" headerText="Mon B" width="55" />
-					<mx:DataGridColumn dataField="day6" headerText="Tue B" width="55" />
-					<mx:DataGridColumn dataField="day7" headerText="Wed B" width="55" />
-					<mx:DataGridColumn dataField="day8" headerText="Thu B" width="55" />
-					<mx:DataGridColumn dataField="day9" headerText="Fri B" width="55" />
+					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day1" headerText="Tue A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day2" headerText="Wed A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day3" headerText="Thu A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day4" headerText="Fri A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day5" headerText="Mon B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day6" headerText="Tue B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day7" headerText="Wed B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day8" headerText="Thu B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day9" headerText="Fri B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
 				</mx:columns>
 			</mx:DataGrid>
+			
+			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();writePeriods();" x="10" y="340"/>
 		</mx:Canvas>
 		
 	</mx:TabNavigator>
