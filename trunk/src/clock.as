@@ -48,7 +48,12 @@ private function updateHeaderBar():void {
 }
 
 private function getTimeString():String {
-	return ((padNum(now.getHours()%12)) + "." + padNum(now.getMinutes()));
+	var numberToPad:Number = (now.getHours()%12);
+	if(numberToPad == 0) {
+		numberToPad = 12;
+	}
+	
+	return padNum(numberToPad) + "." + padNum(now.getMinutes());
 }
 
 private function getRefFile():void {

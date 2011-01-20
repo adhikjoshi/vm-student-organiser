@@ -9,7 +9,7 @@ import mx.events.CalendarLayoutChangeEvent;
 import flash.filesystem.*;
 
 [Bindable]
-public var entries:XMLListCollection;
+public var entries:XML;
 
 [Bindable]
 public var curDayTasks:XMLList;
@@ -18,9 +18,6 @@ public var curDay:Number;
 // might have to make this file beforehand
 // files are in [documents]/Organiser/
 private var subjectsFile:String = "Organiser/subjects.xml";
-private var subjectsXMLRootOpen:String = "<wrapper>\n";
-private var subjectsXMLRootClose:String = "\n</wrapper>\n";
-private var subjectsData:XML;
 
 public function readSubjectsXML():void {
 	var file:File = File.documentsDirectory.resolvePath(subjectsFile);
@@ -28,10 +25,10 @@ public function readSubjectsXML():void {
 	if(file.exists) {
 		var fileStream:FileStream = new FileStream();
 		fileStream.open(file, FileMode.READ);
-		subjectsData = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
+		entries = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
 	
-		entries = new XMLListCollection(subjectsData.children());
 		fileStream.close();
+		
 		var now:Date = new Date();
 		dateSelector.selectedDate = new Date();
 		getDayTasks( getDayIndex(now) );
@@ -43,7 +40,7 @@ public function writeSubjectsXML():void {
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file, FileMode.WRITE);
 	
-	var outputString:String = utfHeader + subjectsXMLRootOpen + entries.toXMLString() + subjectsXMLRootClose;
+	var outputString:String = utfHeader + entries.toXMLString();
 	
 	fileStream.writeUTFBytes(outputString);
 	fileStream.close();
@@ -52,9 +49,9 @@ public function writeSubjectsXML():void {
 // given an index for the xml's children,
 // copy the data into the bindable xml structure
 public function getDayTasks(index:Number):void {
-	if(index < entries.children().length()) {
+	if(index < entries.day.length()) {
 		curDay = index;
-		curDayTasks = new XMLList(entries.children()[index].toXMLString());
+		curDayTasks = new XMLList(entries.day[index].toXMLString());
 	} else {
 		// handle error here: no entry for date
 		curDayTasks = new XMLList("<day></day>");
@@ -62,7 +59,7 @@ public function getDayTasks(index:Number):void {
 }
 
 public function writeDayTasks():void {
-	entries.children()[curDay] = curDayTasks;
+	entries.day[curDay] = curDayTasks;
 }
 
 // given a Date object, finds the index
@@ -73,8 +70,7 @@ public function getDayIndex(dateToSearch:Date):Number {
 	var curDate:String = dateToString(dateToSearch);
 	
 	var curIndex:Number = 0;
-	var N:Number = subjectsData.children()[0].children().length();
-	for(curIndex = 0;curIndex < N && subjectsData.children()[0].children()[curIndex].attribute("date") != curDate;curIndex++) {
+	for(curIndex = 0;curIndex < entries.day.length() && entries.day[curIndex].attribute("date") != curDate;curIndex++) {
 		// this block of code is only here so that Flex doesn't pull a WARNING on me :(
 	}
 	
