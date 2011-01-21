@@ -41,6 +41,30 @@ Description:	Main file which controls layout of the application and includes scr
 	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="50" y="62" color="white" />
 </mx:Canvas>
 
+<mx:Component id="subjectPicker">
+	<mx:ComboBox>
+		<mx:dataProvider>
+			<mx:String></mx:String>
+			<mx:String>Ag</mx:String>
+			<mx:String>Com</mx:String>
+			<mx:String>Dra</mx:String>
+			<mx:String>DT</mx:String>
+			<mx:String>Eng</mx:String>
+			<mx:String>Fre</mx:String>
+			<mx:String>Geo</mx:String>
+			<mx:String>Ger</mx:String>
+			<mx:String>His</mx:String>
+			<mx:String>IPT</mx:String>
+			<mx:String>Jap</mx:String>
+			<mx:String>Mat</mx:String>
+			<mx:String>Mus</mx:String>
+			<mx:String>PE</mx:String>
+			<mx:String>Sci</mx:String>
+			<mx:String>SDD</mx:String>
+		</mx:dataProvider>
+	</mx:ComboBox>
+</mx:Component>
+
 <mx:VBox id="contentArea"
 	x="250" y="150"
 	horizontalScrollPolicy="off"
@@ -98,16 +122,16 @@ Description:	Main file which controls layout of the application and includes scr
 				verticalScrollPolicy="off">
 				<mx:columns>
 					<mx:DataGridColumn dataField="periodName" headerText="" width="20" />
-					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day1" headerText="Tue A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day2" headerText="Wed A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day3" headerText="Thu A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day4" headerText="Fri A" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day5" headerText="Mon B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day6" headerText="Tue B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day7" headerText="Wed B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day8" headerText="Thu B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
-					<mx:DataGridColumn dataField="day9" headerText="Fri B" width="65" itemEditor="organiserComponents.subjectsEditor" editorDataField="value" />
+					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day1" headerText="Tue A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day2" headerText="Wed A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day3" headerText="Thu A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day4" headerText="Fri A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day5" headerText="Mon B" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day6" headerText="Tue B" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day7" headerText="Wed B" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day8" headerText="Thu B" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
+					<mx:DataGridColumn dataField="day9" headerText="Fri B" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
 				</mx:columns>
 			</mx:DataGrid>
 			

@@ -33,6 +33,6 @@ public function getDayString(dateToConvert:Date):String {
 
 // converts a date object into a string with day's name
 public function getDayNameString(dateToConvert:Date):String {
-	var days:Array = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+	var days:Array = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 	return days[dateToConvert.getDay()];
 }
