@@ -17,6 +17,7 @@ public var weekNum:Number;
 public var isHols:Boolean;
 
 private var refDate:Date;
+private var refType:Boolean;
 private var termNum:Number;
 private var termDatesFile:String = "Organiser/termDates.xml";
 public var refFile:XML;
@@ -37,11 +38,15 @@ private function runEverySecond(event:TimerEvent):void {
 
 private function updateHeaderBar():void {
 	now = new Date();
-	getRefDate();
+	var referencePackage:Object = getRefDate(now);
+	refDate = referencePackage.rDate;
+	refType = referencePackage.rType;
 	
 	if(isHols == false) {
-		findWeekDetails(refDate,true);
-		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Term " + String(termNum) + ", Week " + String(weekNum) + getWeekTypeString() + " | " + getDayString(now);
+		var retObj:Object = findWeekDetails(refDate,refType,now);
+		weekType = retObj.weekType;
+		weekNum = retObj.weekNum;
+		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Term " + String(termNum) + ", Week " + String(weekNum) + getWeekTypeString(weekType) + " | " + getDayString(now);
 	} else {
 		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Holidays | " + getDayString(now);
 	}
@@ -64,66 +69,3 @@ private function getRefFile():void {
 	fileStream.close();
 }
 
-private function getRefDate():void {
-	var yearIndex:Number = getYearIndex();
-	var termIndex:Number = getTermIndex(yearIndex);
-	
-	termNum = termIndex + 1;
-	
-	if(isHols == false) {
-		refDate = DateField.stringToDate(refFile.year[yearIndex].term[termIndex].start,"YYYY/MM/DD");
-	}
-}
-
-private function getYearIndex():Number {
-	var thisYearIndex:Number;
-	for(thisYearIndex=0;thisYearIndex < refFile.firstChild.children().length && refFile.firstChild.children()[thisYearIndex].attribute("num")!=now.getFullYear();thisYearIndex++) {
-		// random comment here
-	}
-	return thisYearIndex;
-}
-
-private function getTermIndex(yearIndex:Number):Number {
-	var termIndex:Number;
-	isHols = false;
-	for(termIndex=0;termIndex < refFile.year[yearIndex].term.length();termIndex++) {
-		var start:String = refFile.year[yearIndex].term[termIndex].start;
-		var end:String = refFile.year[yearIndex].term[termIndex].end;
-
-		var thisDay:String = dateToString(now);
-		if(start <= thisDay && thisDay <= end) {
-			return termIndex;
-		}
-	}
-	isHols = true;
-	return termIndex;
-}
-
-private function findWeekDetails(termStartDate:Date,termStartWeekType:Boolean):void {
-	weekType = termStartWeekType;
-	weekNum = 1;
-	
-	var curDate:Date = termStartDate;
-	
-	while(curDate < now) {
-		trace(curDate);
-		curDate.setDate(curDate.getDate()+1);
-		if(curDate.getDay() == 1) {
-			// make weekly changes on mondays
-			turnWeek();
-		}
-	}
-}
-
-private function turnWeek():void {
-	weekType = !(weekType);
-	weekNum++;
-}
-
-private function getWeekTypeString():String {
-	if(weekType == true) {
-		return "A";
-	} else {
-		return "B";
-	}
-}

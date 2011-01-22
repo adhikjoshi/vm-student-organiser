@@ -24,6 +24,7 @@ Description:	Main file which controls layout of the application and includes scr
 		include "clock.as"
 		include "prefs.as"
 		include "subjectListing.as"
+		include "timeTableChange.as"
 	]]>
 </mx:Script>
 
@@ -121,7 +122,7 @@ Description:	Main file which controls layout of the application and includes scr
 				rowCount="10"
 				verticalScrollPolicy="off">
 				<mx:columns>
-					<mx:DataGridColumn dataField="periodName" headerText="" width="20" />
+					<mx:DataGridColumn dataField="periodName" headerText="" width="20" editable="false" />
 					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
 					<mx:DataGridColumn dataField="day1" headerText="Tue A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
 					<mx:DataGridColumn dataField="day2" headerText="Wed A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />
@@ -135,7 +136,7 @@ Description:	Main file which controls layout of the application and includes scr
 				</mx:columns>
 			</mx:DataGrid>
 			
-			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();writePeriods();" x="10" y="340"/>
+			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();updateEntries();" x="10" y="340"/>
 		</mx:Canvas>
 		
 	</mx:TabNavigator>
