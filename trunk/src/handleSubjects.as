@@ -31,7 +31,7 @@ public function readSubjectsXML():void {
 		
 		var now:Date = new Date();
 		dateSelector.selectedDate = new Date();
-		getDayTasks( getDayIndex(now) );
+		getDayTasks( getDayIndex(now,false) );
 	}
 }
 
@@ -62,28 +62,15 @@ public function writeDayTasks():void {
 	entries.day[curDay] = curDayTasks;
 }
 
-// given a Date object, finds the index
-// of the XML child that matches the given day
-// (or the day immediately after it) OPTIONAL
-// returns N if there is none
-public function getDayIndex(dateToSearch:Date):Number {
-	var curDate:String = dateToString(dateToSearch);
-	
-	var curIndex:Number = 0;
-	for(curIndex = 0;curIndex < entries.day.length() && entries.day[curIndex].attribute("date") != curDate;curIndex++) {
-		// this block of code is only here so that Flex doesn't pull a WARNING on me :(
-	}
-	
-	return curIndex;
-}
-
 // updates the day which is in focus
 public function useDate(eventObj:CalendarLayoutChangeEvent):void {
 	// Make sure selectedDate is not null.
 	if (eventObj.currentTarget.selectedDate == null) {
-		return 
+		return;
 	}
+	changeDate(eventObj.currentTarget.selectedDate);
+}
 
-	var selectedDate:Date = eventObj.currentTarget.selectedDate;
-	getDayTasks(getDayIndex(selectedDate));
+public function changeDate(selectedDate:Date):void {
+	getDayTasks(getDayIndex(selectedDate,false));
 }
