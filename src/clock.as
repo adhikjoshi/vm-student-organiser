@@ -53,11 +53,8 @@ private function updateHeaderBar():void {
 }
 
 private function getTimeString():String {
-	var numberToPad:Number = (now.getHours()%12);
-	if(numberToPad == 0) {
-		numberToPad = 12;
-	}
-	
+	var numberToPad:Number = now.getHours();
+
 	return padNum(numberToPad) + "." + padNum(now.getMinutes());
 }
 

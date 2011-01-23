@@ -1,0 +1,22 @@
+Add multi-file feature to notes (tabbed sidebar)
+Keyboard shortcuts (^pgup/down to change between tabs)
+Subject Jump
+Diary "Report" output
+Prevent "copying" of data
+Customizable background
+Revamp code for handleSubjects.xml (XML object access neater than XMLList.children() etc)
+Double-click edit datagrids
+Alternate shading datagrids (#ffffff and #f7f7f7)
+Splash Screen
+Add warning when changing timetable
+Home tab
+Upcoming stuffs for each subject
+Add next day/week buttons to diary
+Add loading... box for timetable change
+Icons
+Pixel-perfect sidebar alignment
+Contacts tab
+Events tab
+Disable weekends/pub hols
+Add Assemblies/Rollcall to sidebar
+Choose time types (12/24 hour)

@@ -9,11 +9,13 @@ Description:	Main file which controls layout of the application and includes scr
 
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" 
 	layout="absolute" 
-	windowComplete="readAll();" 
+	creationComplete="readAll();" 
 	closing="writeAll();" 
 	horizontalScrollPolicy="off" 
 	verticalScrollPolicy="off" 
 	showStatusBar="false">
+
+<mx:Style source="../fonts/embeddedFonts.css" />
 
 <mx:Script>
 	<![CDATA[
@@ -24,23 +26,31 @@ Description:	Main file which controls layout of the application and includes scr
 		include "clock.as"
 		include "prefs.as"
 		include "subjectListing.as"
-		include "timeTableChange.as"
+		include "timeTableChange.as"	
 	]]>
 </mx:Script>
 
-<mx:Style source="../fonts/embeddedFonts.css" />
-
 <!-- Background Image (grad fill) -->
-<mx:Image id="backgroundImage" source="@Embed(source='../assets/background.png')" />
+<mx:Image id="backgroundImage" source="@Embed(source='../assets/background-rev1.png')" />
 
 <mx:Canvas x="47" y="25">
 	<!-- top bar images -->
-	<mx:Image id="topTopBarImg" source="@Embed(source='../assets/topbar1.png')" />
-	<mx:Image id="bottomTopBarImg" source="@Embed(source='../assets/topbar2.png')" x="40" y="55" />
+	<mx:Image id="topTopBarImg" source="@Embed(source='../assets/topbar1-rev2.png')" />
+	<mx:Image id="bottomTopBarImg" source="@Embed(source='../assets/topbar2-rev1.png')" x="40" y="55" />
+	<mx:Image id="sideBarImg" source="@Embed(source='../assets/sidebarbg-rev1.png')" y="123" />
 	
 	<mx:Label id="headerLabel" fontFamily="MyriadPro" fontSize="20" x="10" y="10" color="white" />
 	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="50" y="62" color="white" />
 </mx:Canvas>
+
+<mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20">
+	<mx:htmlText>
+		<![CDATA[<font color="#888888">OHAI!</font>]]>
+	</mx:htmlText>
+</mx:Text>
+
+<!-- component for the itemEditor used in the
+Preferences datagrid -->
 
 <mx:Component id="subjectPicker">
 	<mx:ComboBox>
@@ -62,19 +72,20 @@ Description:	Main file which controls layout of the application and includes scr
 			<mx:String>PE</mx:String>
 			<mx:String>Sci</mx:String>
 			<mx:String>SDD</mx:String>
+			<mx:String>Spt</mx:String>
 		</mx:dataProvider>
 	</mx:ComboBox>
 </mx:Component>
 
 <mx:VBox id="contentArea"
-	x="250" y="150"
+	x="260" y="150"
 	horizontalScrollPolicy="off"
 	verticalScrollPolicy="off">
 
 	<mx:TabNavigator id="contentStack"
-		x="230" y="150"
+		x="260" y="150"
 		width="690" height="415"
-		selectedIndex="2"
+		selectedIndex="0"
 		creationPolicy="all">
 		
 		<mx:Canvas label="Diary">

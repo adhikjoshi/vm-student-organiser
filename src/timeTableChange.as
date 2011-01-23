@@ -42,7 +42,7 @@ private function updateRange(startRange:String,endRange:String,refDateStart:Stri
 	var endDate:Date = DateField.stringToDate(endRange,"YYYY/MM/DD");
 	
 	for(var curDate:Date=startDate;curDate <= endDate;curDate.setDate(curDate.getDate()+1)) {
-		if(dateToString(curDate) >= refDateStart) {
+		if(dateToString(curDate) >= refDateStart && curDate.getDay() != 0 && curDate.getDay() != 6) {
 			entries.appendChild(createEntries(curDate));
 		}
 	}
