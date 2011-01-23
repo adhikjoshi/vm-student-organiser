@@ -34,19 +34,25 @@ private function displayUserDetails():void {
 
 private function getUserNamePrefs():void {
 	var file:File = File.documentsDirectory.resolvePath(userNameFile);
-	var fileStream:FileStream = new FileStream();
-	fileStream.open(file,FileMode.READ);
-	userNamePrefs = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
-	fileStream.close();
 	
-	userName = userNamePrefs.userName;
-	userClass = userNamePrefs.userClass;
+	if(file.exists) {
+		var fileStream:FileStream = new FileStream();
+		fileStream.open(file,FileMode.READ);
+		userNamePrefs = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
+		fileStream.close();
 	
-	userNameField.text = userName;
-	classField.selectedIndex = classList.indexOf(userClass);
+		userName = userNamePrefs.userName;
+		userClass = userNamePrefs.userClass;
 	
-	if(userName != "") {
-		displayUserDetails();
+		userNameField.text = userName;
+		classField.selectedIndex = classList.indexOf(userClass);
+	
+		if(userName != "") {
+			displayUserDetails();
+		}
+	} else {
+		userNamePrefs = XML("<user><userName></userName><userClass></userClass></user>");
+		contentStack.selectedIndex = 2;
 	}
 }
 
