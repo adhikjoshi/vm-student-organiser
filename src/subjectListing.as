@@ -18,12 +18,22 @@ private var subjectsListingFile:String = "Organiser/subjectListing.xml";
 private function readPeriods():void {
 	var file:File = File.documentsDirectory.resolvePath(subjectsListingFile);
 	
+	var needRemake:Boolean = false;
+	
 	if(file.exists) {
 		var fileStream:FileStream = new FileStream();
 		fileStream.open(file,FileMode.READ);
 		curDisplay = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));
 		fileStream.close();
+		
+		if(curDisplay.period.length == 0) {
+			needRemake = true;
+		}
 	} else {
+		needRemake = true;
+	}
+	
+	if(needRemake == true) {
 		curDisplay = XML("<subjects></subjects>");
 	
 		var i:Number;
