@@ -155,3 +155,8 @@ private function getRefDate(dateToGet:Date):Object {
 	return retObj;
 }
 
+private function getTimeString(dateToConvert:Date):String {
+	var numberToPad:Number = dateToConvert.getHours();
+	return padNum(numberToPad) + "." + padNum(dateToConvert.getMinutes());
+}
+

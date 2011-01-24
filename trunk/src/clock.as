@@ -22,20 +22,6 @@ private var termNum:Number;
 private var termDatesFile:String = "Organiser/termDates.xml";
 public var refFile:XML;
 
-private function runTimer():void {
-	// makes a timer that ticks once per second
-	// for infinity
-	var secondTimer:Timer = new Timer(1000);
-	
-	// runs runEverySecond() once per second
-	secondTimer.addEventListener(TimerEvent.TIMER,runEverySecond);
-	secondTimer.start();
-}
-
-private function runEverySecond(event:TimerEvent):void {
-	updateHeaderBar();	
-}
-
 private function updateHeaderBar():void {
 	now = new Date();
 	var referencePackage:Object = getRefDate(now);
@@ -46,16 +32,10 @@ private function updateHeaderBar():void {
 		var retObj:Object = findWeekDetails(refDate,refType,now);
 		weekType = retObj.weekType;
 		weekNum = retObj.weekNum;
-		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Term " + String(termNum) + ", Week " + String(weekNum) + getWeekTypeString(weekType) + " | " + getDayString(now);
+		headerLabel.text = getTimeString(now) + " | " + getDayNameString(now) + " Term " + String(termNum) + ", Week " + String(weekNum) + getWeekTypeString(weekType) + " | " + getDayString(now);
 	} else {
-		headerLabel.text = getTimeString() + " | " + getDayNameString(now) + " Holidays | " + getDayString(now);
+		headerLabel.text = getTimeString(now) + " | " + getDayNameString(now) + " Holidays | " + getDayString(now);
 	}
-}
-
-private function getTimeString():String {
-	var numberToPad:Number = now.getHours();
-
-	return padNum(numberToPad) + "." + padNum(now.getMinutes());
 }
 
 private function getRefFile():void {

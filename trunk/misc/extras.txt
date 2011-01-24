@@ -20,3 +20,4 @@ Events tab
 Disable weekends/pub hols
 Add Assemblies/Rollcall to sidebar
 Choose time types (12/24 hour)
+Add special colouring for breaks

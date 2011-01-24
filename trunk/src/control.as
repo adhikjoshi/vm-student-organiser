@@ -9,12 +9,19 @@ public function readAll():void {
 	
 	getRefFile();
 	updateHeaderBar();
-	runTimer();
 	
 	findOSUserName();
 	getUserNamePrefs();
 	
 	readPeriods();
+	
+	getBellTimes();
+	
+	var todayDate:Date = new Date;
+	getTodayPeriods(todayDate,weekType);
+	displayPeriods();
+	
+	runTimer();
 }
 
 public function writeAll():void {
@@ -22,5 +29,20 @@ public function writeAll():void {
 	writeNotes();
 	writePeriods();
 	writeUserNamePrefs();
+}
+
+private function runTimer():void {
+	var secondTimer:Timer = new Timer(1000);
+	
+	secondTimer.addEventListener(TimerEvent.TIMER,runEverySecond);
+	secondTimer.start();
+}
+
+private function runEverySecond(event:TimerEvent):void {
+	updateHeaderBar();
+	
+	var todayDate:Date = new Date;
+	getTodayPeriods(todayDate,weekType);
+	displayPeriods();
 }
 

@@ -26,7 +26,8 @@ Description:	Main file which controls layout of the application and includes scr
 		include "clock.as"
 		include "prefs.as"
 		include "subjectListing.as"
-		include "timeTableChange.as"	
+		include "timeTableChange.as"
+		include "sidebar.as"
 	]]>
 </mx:Script>
 
@@ -43,11 +44,7 @@ Description:	Main file which controls layout of the application and includes scr
 	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="50" y="62" color="white" />
 </mx:Canvas>
 
-<mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20">
-	<mx:htmlText>
-		<![CDATA[<font color="#888888">OHAI!</font>]]>
-	</mx:htmlText>
-</mx:Text>
+<mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20" />
 
 <!-- component for the itemEditor used in the
 Preferences datagrid -->
