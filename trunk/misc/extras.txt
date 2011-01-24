@@ -21,3 +21,4 @@ Disable weekends/pub hols
 Add Assemblies/Rollcall to sidebar
 Choose time types (12/24 hour)
 Add special colouring for breaks
+Change line metrics so that bars/pipes line up
