@@ -46,6 +46,9 @@ Description:	Main file which controls layout of the application and includes scr
 
 <mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20" />
 
+<!-- content pane shadow -->
+<mx:Image source="@Embed(source='../assets/contentshadow.png')" x="257" y="147" />
+
 <!-- component for the itemEditor used in the
 Preferences datagrid -->
 
@@ -78,7 +81,7 @@ Preferences datagrid -->
 	x="260" y="150"
 	horizontalScrollPolicy="off"
 	verticalScrollPolicy="off">
-
+	
 	<mx:TabNavigator id="contentStack"
 		x="260" y="150"
 		width="690" height="415"
