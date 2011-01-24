@@ -1,0 +1,12 @@
+#summary YAY first alpha!
+#labels Featured,Alpha,Release
+
+= Introduction =
+
+First alpha finally complete, will be released for download soon. In the meantime screenies!
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser014alpha.png]
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser015alpha.png]
+
+[http://vm-student-organiser.googlecode.com/svn/trunk/screens/organiser016alpha.png]
