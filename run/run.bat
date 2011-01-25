@@ -1,1 +1,1 @@
-wscript.exe invis.vbs tempLaunch.bat
+wscript.exe runfiles\invis.vbs runfiles\tempLaunch.bat

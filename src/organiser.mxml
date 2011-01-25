@@ -95,7 +95,10 @@ Preferences datagrid -->
 				dataProvider="{curDayTasks.period}" 
 				editable="true"
 				rowCount="8"
-				itemEditEnd="writeDayTasks();">
+				itemEditEnd="writeDayTasks();"
+				draggableColumns="false"
+				resizableColumns="false"
+				sortableColumns="false">
 					
 				<mx:columns>
 					<mx:DataGridColumn dataField="subject" editable="false" headerText="Subject" width="100" />
@@ -131,7 +134,10 @@ Preferences datagrid -->
 				dataProvider="{curDisplay.period}"
 				editable="true"
 				rowCount="10"
-				verticalScrollPolicy="off">
+				verticalScrollPolicy="off"
+				draggableColumns="false"
+				resizableColumns="false"
+				sortableColumns="false">
 				<mx:columns>
 					<mx:DataGridColumn dataField="periodName" headerText="" width="20" editable="false" />
 					<mx:DataGridColumn dataField="day0" headerText="Mon A" width="65" itemEditor="{subjectPicker}" editorDataField="selectedItem" />

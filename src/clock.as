@@ -39,7 +39,7 @@ private function updateHeaderBar():void {
 }
 
 private function getRefFile():void {
-	var file:File = File.documentsDirectory.resolvePath(termDatesFile);
+	var file:File = File.userDirectory.resolvePath(termDatesFile);
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file,FileMode.READ);
 	refFile = XML(fileStream.readUTFBytes(fileStream.bytesAvailable));

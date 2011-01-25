@@ -10,13 +10,15 @@ public var numDaysCycle:Number = 10;
 // before, [1..8], after
 public var numPeriodsDay:Number = 10;
 
+public var timeTable:XML;
+
 [Bindable]
 private var curDisplay:XML;
 
 private var subjectsListingFile:String = "Organiser/subjectListing.xml";
 
 private function readPeriods():void {
-	var file:File = File.documentsDirectory.resolvePath(subjectsListingFile);
+	var file:File = File.userDirectory.resolvePath(subjectsListingFile);
 	
 	var needRemake:Boolean = false;
 	
@@ -57,10 +59,11 @@ private function readPeriods():void {
 			}
 		}
 	}
+	timeTable = XML(curDisplay.toXMLString());
 }
 
 private function writePeriods():void {
-	var file:File = File.documentsDirectory.resolvePath(subjectsListingFile);
+	var file:File = File.userDirectory.resolvePath(subjectsListingFile);
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file,FileMode.WRITE);
 	fileStream.writeUTFBytes(utfHeader + curDisplay.toXMLString());

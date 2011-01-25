@@ -17,7 +17,7 @@ private var tabStopsSetting:String = "<TEXTFORMAT TABSTOPS='50'>";
 private var closeTabStopsSetting:String = "</TEXTFORMAT>";
 
 private function getBellTimes():void {
-	var file:File = File.documentsDirectory.resolvePath(bellTimesFile);
+	var file:File = File.userDirectory.resolvePath(bellTimesFile);
 	var fileStream:FileStream = new FileStream;
 	
 	fileStream.open(file,FileMode.READ);
@@ -27,26 +27,29 @@ private function getBellTimes():void {
 
 private function displayPeriods():void {
 	var periodDisplayString:String = "";
-	var currentPeriod:Number = findCurrentPeriod();
 	
-	for(var i:Number=2;i<todayPeriods.length-2;i++) {
-		if(i == currentPeriod || i == currentPeriod + 1) {
-			periodDisplayString += '<font color="' + currentPeriodColour + '">';
-		} else if(i < currentPeriod) {
-			periodDisplayString += '<font color="' + pastPeriodColour + '">';
-		} else {
-			periodDisplayString += '<font color="' + upcomingPeriodColour + '">';
-		}
-		
-		periodDisplayString += todayPeriods[i]
+	if(isHols == false) {
+		var currentPeriod:Number = findCurrentPeriod();
 	
-		if(i%2 == 0) {
-			periodDisplayString += "\t\t| ";
-		} else {
-			periodDisplayString += "\n";
-		}
+		for(var i:Number=2;i<todayPeriods.length-2;i++) {
+			if(i == currentPeriod || i == currentPeriod + 1) {
+				periodDisplayString += '<font color="' + currentPeriodColour + '">';
+			} else if(i < currentPeriod) {
+				periodDisplayString += '<font color="' + pastPeriodColour + '">';
+			} else {
+				periodDisplayString += '<font color="' + upcomingPeriodColour + '">';
+			}
 		
-		periodDisplayString += "</font>";
+			periodDisplayString += todayPeriods[i]
+	
+			if(i%2 == 0) {
+				periodDisplayString += "\t\t| ";
+			} else {
+				periodDisplayString += "\n";
+			}
+		
+			periodDisplayString += "</font>";
+		}
 	}
 	
 	sideBarText.htmlText = tabStopsSetting + periodDisplayString + closeTabStopsSetting;
@@ -80,8 +83,8 @@ private function getTodayPeriods(dateToGet:Date,wt:Boolean):void {
 	
 	periodAndTimes.push("00.00","Midnight");
 	
-	for(var i:Number=0;i<curDisplay.period.length();i++) {
-		var periodHere:String = curDisplay.period[i].child("day" + String(weekIndexToGet));
+	for(var i:Number=0;i<timeTable.period.length();i++) {
+		var periodHere:String = timeTable.period[i].child("day" + String(weekIndexToGet));
 		if(periodHere != "") {
 			periodAndTimes.push(bellTimes.day[dayTypeIndexToGet].period[i]);
 			periodAndTimes.push(periodHere);
@@ -102,7 +105,11 @@ private function getTodayPeriods(dateToGet:Date,wt:Boolean):void {
 		periodAndTimes.splice(j,0,breakTime,bellTimes.day[dayTypeIndexToGet].rest[i].attribute("name"));
 	}
 	
-	periodAndTimes.push("23.59","Midnight");
+	if(periodAndTimes[periodAndTimes.length-2] == "15.05") {
+		periodAndTimes.push("16.00","Midnight");
+	} else {
+		periodAndTimes.push("15.05","Midnight");
+	}
 	
 	todayPeriods = periodAndTimes;
 }
