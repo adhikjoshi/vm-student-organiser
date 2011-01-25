@@ -20,7 +20,7 @@ public var curDay:Number;
 private var subjectsFile:String = "Organiser/subjects.xml";
 
 public function readSubjectsXML():void {
-	var file:File = File.documentsDirectory.resolvePath(subjectsFile);
+	var file:File = File.userDirectory.resolvePath(subjectsFile);
 	
 	if(file.exists) {
 		var fileStream:FileStream = new FileStream();
@@ -32,11 +32,13 @@ public function readSubjectsXML():void {
 		var now:Date = new Date();
 		dateSelector.selectedDate = new Date();
 		getDayTasks( getDayIndex(now,false) );
+	} else {
+		entries = XML("<subjects></subjects>");
 	}
 }
 
 public function writeSubjectsXML():void {
-	var file:File = File.documentsDirectory.resolvePath(subjectsFile);
+	var file:File = File.userDirectory.resolvePath(subjectsFile);
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file, FileMode.WRITE);
 	
@@ -65,12 +67,11 @@ public function writeDayTasks():void {
 // updates the day which is in focus
 public function useDate(eventObj:CalendarLayoutChangeEvent):void {
 	// Make sure selectedDate is not null.
-	if (eventObj.currentTarget.selectedDate == null) {
-		return;
-	}
 	changeDate(eventObj.currentTarget.selectedDate);
 }
 
 public function changeDate(selectedDate:Date):void {
-	getDayTasks(getDayIndex(selectedDate,false));
+	if(selectedDate != null) {
+		getDayTasks(getDayIndex(selectedDate,false));
+	}
 }

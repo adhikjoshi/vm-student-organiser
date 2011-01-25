@@ -33,7 +33,7 @@ private function displayUserDetails():void {
 }
 
 private function getUserNamePrefs():void {
-	var file:File = File.documentsDirectory.resolvePath(userNameFile);
+	var file:File = File.userDirectory.resolvePath(userNameFile);
 	
 	if(file.exists) {
 		var fileStream:FileStream = new FileStream();
@@ -57,7 +57,7 @@ private function getUserNamePrefs():void {
 }
 
 private function writeUserNamePrefs():void {
-	var file:File = File.documentsDirectory.resolvePath(userNameFile);
+	var file:File = File.userDirectory.resolvePath(userNameFile);
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file,FileMode.WRITE);
 	fileStream.writeUTFBytes(utfHeader + userNamePrefs.toXMLString());

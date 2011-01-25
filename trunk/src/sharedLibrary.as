@@ -78,7 +78,7 @@ private function getTermIndex(yearIndex:Number,dateToGet:Date,adjustHols:Boolean
 		var start:String = refFile.year[yearIndex].term[termIndex].start;
 		var end:String = refFile.year[yearIndex].term[termIndex].end;
 
-		var thisDay:String = dateToString(dateToGet);
+ 		var thisDay:String = dateToString(dateToGet);
 		if(start <= thisDay && thisDay <= end) {
 			return termIndex;
 		}

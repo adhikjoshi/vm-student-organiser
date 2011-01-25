@@ -50,6 +50,8 @@ private function updateRange(startRange:String,endRange:String,refDateStart:Stri
 
 // update from TODAY
 private function updateEntries():void {
+	timeTable = XML(curDisplay.toXMLString());
+
 	var today:Date = new Date;
 	
 	deleteAllAfterDate(today);

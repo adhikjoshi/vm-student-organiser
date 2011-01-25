@@ -8,7 +8,7 @@ import flash.filesystem.*
 private var notesFile:String = "Organiser/notes.txt";
 
 public function readNotes():void {
-	var file:File = File.documentsDirectory.resolvePath(notesFile);
+	var file:File = File.userDirectory.resolvePath(notesFile);
 	
 	if(file.exists) {
 		var fileStream:FileStream = new FileStream();
@@ -20,7 +20,7 @@ public function readNotes():void {
 }
 
 public function writeNotes():void {
-	var file:File = File.documentsDirectory.resolvePath(notesFile);
+	var file:File = File.userDirectory.resolvePath(notesFile);
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file,FileMode.WRITE);
 	fileStream.writeUTFBytes(notesArea.text);

@@ -24,3 +24,4 @@ Add special colouring for breaks
 Change line metrics so that bars/pipes line up (sidebar)
 Link notes to individual periods
 Add full names of periods
+Desktop shortcuts
