@@ -6,7 +6,6 @@ Prevent "copying" of data
 Customizable background
 Revamp code for handleSubjects.xml (XML object access neater than XMLList.children() etc)
 Double-click edit datagrids
-Alternate shading datagrids (#ffffff and #f7f7f7)
 Splash Screen
 Add warning when changing timetable
 Home tab
@@ -25,3 +24,18 @@ Change line metrics so that bars/pipes line up (sidebar)
 Link notes to individual periods
 Add full names of periods
 Desktop shortcuts
+Shading of events
+Autoscroll to next event
+Delete events
+Refactor code that uses XML for storage (use JSON and read/writeObject instead)
+Multiple Remove on Events/Assignments
+Term and Week Input
+Drag and drop timetable edit
+Assignment details on home popup (add from assignment view)
+
+Events/Assignments
+==================
+-Use datagrid with in-place editing and adding of entries
+-Fields are Name (Text), Date (DatePicker), Type (event/Assignment; combobox)
+-Shade past events/assignments differently
+-On creation complete, set verticalScrollPosition to the beginning of the next current event

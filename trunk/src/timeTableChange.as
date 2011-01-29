@@ -50,6 +50,7 @@ private function updateRange(startRange:String,endRange:String,refDateStart:Stri
 
 // update from TODAY
 private function updateEntries():void {
+	cleanupXML();
 	timeTable = XML(curDisplay.toXMLString());
 
 	var today:Date = new Date;
@@ -65,3 +66,14 @@ private function updateEntries():void {
 	// fix the diary entries :)
 	changeDate(dateSelector.selectedDate);
 }
+
+private function cleanupXML():void {
+	for(var j:Number=0;j<numPeriodsDay;j++) {
+		for(var i:Number=0;i<numDaysCycle;i++) {
+			while(curDisplay.period[j].child("day" + String(i)).mx_internal_uid.length() > 0)  {
+				delete curDisplay.period[j].child("day" + String(i)).mx_internal_uid[curDisplay.period[j].child("day" + String(i)).mx_internal_uid.length()-1];
+			}
+		}
+	}
+}
+

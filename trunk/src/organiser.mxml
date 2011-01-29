@@ -9,7 +9,7 @@ Description:	Main file which controls layout of the application and includes scr
 
 <mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" 
 	layout="absolute" 
-	creationComplete="readAll();" 
+	creationComplete="init();"
 	closing="writeAll();" 
 	horizontalScrollPolicy="off" 
 	verticalScrollPolicy="off" 
@@ -28,6 +28,7 @@ Description:	Main file which controls layout of the application and includes scr
 		include "subjectListing.as"
 		include "timeTableChange.as"
 		include "sidebar.as"
+		include "events.as"
 	]]>
 </mx:Script>
 
@@ -44,7 +45,7 @@ Description:	Main file which controls layout of the application and includes scr
 	<mx:Label id="userInfoLabel" fontFamily="MyriadPro" fontSize="16" x="50" y="62" color="white" />
 </mx:Canvas>
 
-<mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20" />
+<mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20" selectable="false" />
 
 <!-- content pane shadow -->
 <mx:Image source="@Embed(source='../assets/contentshadow-rev1.png')" x="256" y="147" />
@@ -77,6 +78,23 @@ Preferences datagrid -->
 	</mx:ComboBox>
 </mx:Component>
 
+<mx:Component id="eventTypePicker">
+	<mx:ComboBox>
+		<mx:dataProvider>
+			<mx:String>Assignment</mx:String>
+			<mx:String>Event</mx:String>
+		</mx:dataProvider>
+	</mx:ComboBox>
+</mx:Component>
+
+<mx:Component id="ausDayChooser">
+	<mx:DateField formatString="DD/MM/YYYY" />
+</mx:Component>
+
+<mx:Component id="removeItem">
+	<mx:Button label="-" click="outerDocument.deleteItem(event)" />
+</mx:Component>
+
 <mx:VBox id="contentArea"
 	x="260" y="150"
 	horizontalScrollPolicy="off"
@@ -88,10 +106,14 @@ Preferences datagrid -->
 		selectedIndex="0"
 		creationPolicy="all">
 		
+		<mx:Canvas label="Home">
+			<mx:Image source="@Embed(source='../assets/homebg-rev1.png')" x="20" />
+		</mx:Canvas>
+				
 		<mx:Canvas label="Diary">
 			<mx:DateField id="dateSelector" x="10" width="100" editable="true" formatString="DD/MM/YYYY" change="useDate(event);"/>
 			<mx:DataGrid id="diaryEntries"
-				x="10" y="25"
+				x="10" y="30"
 				dataProvider="{curDayTasks.period}" 
 				editable="true"
 				rowCount="8"
@@ -114,6 +136,26 @@ Preferences datagrid -->
 				width="500" height="200"
 				verticalScrollPolicy="auto"
 				text="" />
+		</mx:Canvas>
+		
+		<mx:Canvas label="Events and Assignments">
+			<mx:DataGrid id="eventsAssignments"
+				x="10" y="0"
+				dataProvider="{events}"
+				editable="true"
+				rowCount="8">
+				<mx:columns>
+					<mx:DataGridColumn headerText="" editable="false" width="20" />
+					<mx:DataGridColumn dataField="name" headerText="Name" width="355" />
+					<mx:DataGridColumn dataField="date" headerText="Date" itemRenderer="{ausDayChooser}" rendererIsEditor="true" editorDataField="selectedDate" width="110" />
+					<mx:DataGridColumn dataField="type" headerText="Type" itemEditor="{eventTypePicker}" editorDataField="selectedItem" width="120" />
+				</mx:columns>
+			</mx:DataGrid>
+			
+			<mx:HBox x="10" y="260">
+				<mx:Button label="Add Item" click="addItem();" />
+				<mx:Button label="Remove Item" click="deleteItem(event);" />
+			</mx:HBox>
 		</mx:Canvas>
 		
 		<mx:Canvas label="Preferences">
@@ -153,7 +195,7 @@ Preferences datagrid -->
 				</mx:columns>
 			</mx:DataGrid>
 			
-			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();updateEntries();" x="10" y="340"/>
+			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();updateEntries();cleanupXML();" x="10" y="340"/>
 		</mx:Canvas>
 		
 	</mx:TabNavigator>
