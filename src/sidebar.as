@@ -60,16 +60,20 @@ private function findCurrentPeriod():Number {
 	var timeNow:Date = new Date;
 	var timeNowString:String = getTimeString(timeNow);
 	
-	if(timeNowString < todayPeriods[0]) {
-		return 0;
-	} else {
-		for(var i:Number=0;i<todayPeriods.length-2;i+=2) {
-			if(todayPeriods[i+2] > timeNowString &&
-				todayPeriods[i] <= timeNowString) {
-				return i;
+	if(todayPeriods.length > 0) {	
+		if(timeNowString < todayPeriods[0]) {
+			return 0;
+		} else {
+			for(var i:Number=0;i<todayPeriods.length-2;i+=2) {
+				if(todayPeriods[i+2] > timeNowString &&
+					todayPeriods[i] <= timeNowString) {
+					return i;
+				}
 			}
+			return todayPeriods.length;
 		}
-		return todayPeriods.length;
+	} else {
+		return -1;
 	}
 }
 
@@ -77,41 +81,45 @@ private function findCurrentPeriod():Number {
 private function getTodayPeriods(dateToGet:Date,wt:Boolean):void {
 	var weekIndexToGet:Number = weekDetailsToIndex(dateToGet.getDay(),wt);
 	var dayTypeIndexToGet:Number = dayTypeIndex(dateToGet,wt);
-
-	var periodAndTimes:Array = [];
-	var curBreakIndex:Number = 0;
 	
-	periodAndTimes.push("00.00","Midnight");
+	if(dayTypeIndexToGet != -1) {
+		var periodAndTimes:Array = [];
+		var curBreakIndex:Number = 0;
 	
-	for(var i:Number=0;i<timeTable.period.length();i++) {
-		var periodHere:String = timeTable.period[i].child("day" + String(weekIndexToGet));
-		if(periodHere != "") {
-			periodAndTimes.push(bellTimes.day[dayTypeIndexToGet].period[i]);
-			periodAndTimes.push(periodHere);
-		}
-	}
+		periodAndTimes.push("00.00","Midnight");
 	
-	for(var i:Number=0;i<bellTimes.day[dayTypeIndexToGet].rest.length();i++) {
-		var breakTime:String = bellTimes.day[dayTypeIndexToGet].rest[i];
-	
-		var j:Number;
-		for(j=0;j<periodAndTimes.length;j+=2) {
-			if( (j == 0 && breakTime < periodAndTimes[j]) ||
-				(periodAndTimes[j-2] < breakTime && breakTime < periodAndTimes[j])) {
-				break;
+		for(var i:Number=0;i<timeTable.period.length();i++) {
+			var periodHere:String = timeTable.period[i].child("day" + String(weekIndexToGet));
+			if(periodHere != "") {
+				periodAndTimes.push(bellTimes.day[dayTypeIndexToGet].period[i]);
+				periodAndTimes.push(periodHere);
 			}
 		}
+	
+		for(var i:Number=0;i<bellTimes.day[dayTypeIndexToGet].rest.length();i++) {
+			var breakTime:String = bellTimes.day[dayTypeIndexToGet].rest[i];
+	
+			var j:Number;
+			for(j=0;j<periodAndTimes.length;j+=2) {
+				if( (j == 0 && breakTime < periodAndTimes[j]) ||
+					(periodAndTimes[j-2] < breakTime && breakTime < periodAndTimes[j])) {
+					break;
+				}
+			}
 		
-		periodAndTimes.splice(j,0,breakTime,bellTimes.day[dayTypeIndexToGet].rest[i].attribute("name"));
-	}
+			periodAndTimes.splice(j,0,breakTime,bellTimes.day[dayTypeIndexToGet].rest[i].attribute("name"));
+		}
 	
-	if(periodAndTimes[periodAndTimes.length-2] == "15.05") {
-		periodAndTimes.push("16.00","Midnight");
+		if(periodAndTimes[periodAndTimes.length-2] == "15.05") {
+			periodAndTimes.push("16.00","Midnight");
+		} else {
+			periodAndTimes.push("15.05","Midnight");
+		}
+	
+		todayPeriods = periodAndTimes;
 	} else {
-		periodAndTimes.push("15.05","Midnight");
+		todayPeriods = [];
 	}
-	
-	todayPeriods = periodAndTimes;
 }
 
 private function dayTypeIndex(dateToCheck:Date,weekType:Boolean):Number {

@@ -59,10 +59,13 @@ private function readPeriods():void {
 			}
 		}
 	}
+	cleanupXML();
 	timeTable = XML(curDisplay.toXMLString());
 }
 
 private function writePeriods():void {
+	cleanupXML();
+
 	var file:File = File.userDirectory.resolvePath(subjectsListingFile);
 	var fileStream:FileStream = new FileStream();
 	fileStream.open(file,FileMode.WRITE);

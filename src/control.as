@@ -3,9 +3,16 @@
 // Author:			Joshua Lau
 // Description:		Calls all 'loading' and 'saving' i/o functions at beginning and end of program
 
+public function init():void {
+	organisePeriods();
+	readAll();
+}
+
 public function readAll():void {
 	readSubjectsXML();
 	readNotes();
+	
+	readEvents();
 	
 	getRefFile();
 	updateHeaderBar();
@@ -29,6 +36,7 @@ public function writeAll():void {
 	writeNotes();
 	writePeriods();
 	writeUserNamePrefs();
+	writeEvents();
 }
 
 private function runTimer():void {
@@ -46,3 +54,15 @@ private function runEverySecond(event:TimerEvent):void {
 	displayPeriods();
 }
 
+private function organisePeriods():void {
+	var storageDirectory:File = File.userDirectory.resolvePath("Organiser");
+	storageDirectory.createDirectory();
+	
+	var destBellTimes:File = File.userDirectory.resolvePath("Organiser/bellTimes.xml");
+	var srcBellTimes:File = File.applicationDirectory.resolvePath("data/bellTimes.xml");
+	srcBellTimes.copyTo(destBellTimes,true);
+	
+	var destTermDates:File = File.userDirectory.resolvePath("Organiser/termDates.xml");
+	var srcTermDates:File = File.applicationDirectory.resolvePath("data/termDates.xml");
+	srcTermDates.copyTo(destTermDates,true);
+}
