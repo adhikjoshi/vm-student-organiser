@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<times>
+	<!-- standard day -->
+	<day>
+		<period lesson="true">08.00</period>
+		<rest name="Roll Call">08.50</rest>
+		<period lesson="true">08.56</period>
+		<period lesson="true">09.41</period>
+		<period lesson="true">10.26</period>
+		<rest name="Recess">11.11</rest>
+		<period lesson="true">11.30</period>
+		<period lesson="true">12.15</period>
+		<rest name="Lunch">13.00</rest>
+		<period lesson="true">13.35</period>
+		<period lesson="true">14.20</period>
+		<period lesson="true">15.05</period>
+	</day>
+
+	<!-- wednesday -->	
+	<day>
+		<period lesson="true">08.00</period>
+		<rest name="Roll Call">08.50</rest>
+		<period lesson="true">08.56</period>
+		<period lesson="true">09.39</period>
+		<rest name="Recess">10.22</rest>
+		<period lesson="true">10.42</period>
+		<period lesson="true">11.25</period>
+		<rest name="Lunch">12.08</rest>
+		<period lesson="true">12.50</period>
+		<period lesson="true">13.35</period>
+		<period lesson="true">14.20</period>
+		<period lesson="true">15.05</period>
+	</day>
+	
+	<!-- thursday a -->
+	<day>
+		<period lesson="true">08.00</period>
+		<period lesson="true">08.50</period>
+		<period lesson="true">09.29</period>
+		<period lesson="true">10.08</period>
+		<rest name="Recess">10.47</rest>
+		<period lesson="true">11.07</period>
+		<period lesson="true">11.46</period>
+		<rest name="Assembly">12.25</rest>
+		<rest name="Lunch">13.15</rest>
+		<period lesson="true">13.47</period>
+		<period lesson="true">14.26</period>
+		<period lesson="true">15.05</period>
+	</day>
+	
+	<!-- thursday b -->
+	<day>
+		<period lesson="true">08.00</period>
+		<period lesson="true">08.50</period>
+		<period lesson="true">09.29</period>
+		<period lesson="true">10.08</period>
+		<rest name="Q Assembly">10.47</rest>
+		<rest name="Recess">11.00</rest>
+		<period lesson="true">11.20</period>
+		<period lesson="true">11.59</period>
+		<rest name="Lunch">12.38</rest>
+		<period lesson="true">13.08</period>
+		<period lesson="true">13.47</period>
+		<period lesson="true">14.26</period>
+		<period lesson="true">15.05</period>
+	</day>
+	
+	<!-- friday -->
+	<day>
+		<period lesson="true">08.00</period>
+		<rest name="Roll Call">08.50</rest>
+		<period lesson="true">08.56</period>
+		<period lesson="true">09.40</period>
+		<period lesson="true">10.24</period>
+		<rest name="Recess">11.08</rest>
+		<period lesson="true">11.38</period>
+		<period lesson="true">12.22</period>
+		<rest name="Lunch">13.06</rest>
+		<period lesson="true">13.37</period>
+		<period lesson="true">14.21</period>
+		<period lesson="true">15.05</period>
+	</day>
+</times>

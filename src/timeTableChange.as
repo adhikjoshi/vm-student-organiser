@@ -5,6 +5,9 @@
 
 import mx.controls.DateField
 
+[Bindable]
+public var subjectsList:Array;
+
 // given a Date object, deletes all days after the given day
 // inclusive!
 private function deleteAllAfterDate(dateToDelete:Date):void {
@@ -51,6 +54,9 @@ private function updateRange(startRange:String,endRange:String,refDateStart:Stri
 // update from TODAY
 private function updateEntries():void {
 	cleanupXML();
+	
+	getSubjectsList();
+	
 	timeTable = XML(curDisplay.toXMLString());
 
 	var today:Date = new Date;
@@ -77,3 +83,15 @@ private function cleanupXML():void {
 	}
 }
 
+private function getSubjectsList():void {
+	subjectsList = [];
+	for(var j:Number=0;j<numPeriodsDay;j++) {
+		for(var i:Number=0;i<numDaysCycle;i++) {
+			var thisSubject:String = curDisplay.period[j].child("day" + String(i));
+			if(subjectsList.indexOf(thisSubject) == -1 && thisSubject != "") {
+				subjectsList.push(thisSubject);
+			}
+		}
+	}
+	subjectsList.sort();
+}

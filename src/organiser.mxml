@@ -108,6 +108,7 @@ Preferences datagrid -->
 		
 		<mx:Canvas label="Home">
 			<mx:Image source="@Embed(source='../assets/homebg-rev1.png')" x="20" />
+			<mx:List id="subjectInfoSelector" dataProvider="{subjectsList}" x="20" y="240" width="50" height="125" />
 		</mx:Canvas>
 				
 		<mx:Canvas label="Diary">
@@ -120,7 +121,7 @@ Preferences datagrid -->
 				itemEditEnd="writeDayTasks();"
 				draggableColumns="false"
 				resizableColumns="false"
-				sortableColumns="false">
+				sortableColumns="false"	>
 					
 				<mx:columns>
 					<mx:DataGridColumn dataField="subject" editable="false" headerText="Subject" width="100" />
@@ -129,15 +130,6 @@ Preferences datagrid -->
 			</mx:DataGrid>
 		</mx:Canvas>
 	
-		<mx:Canvas label="Notes">
-			<mx:Label x="10" width="100%" color="black" text="Type random notes, thoughts or anything else in this autosaving box." />
-			<mx:TextArea id="notesArea"
-				x="10" y="20"
-				width="500" height="200"
-				verticalScrollPolicy="auto"
-				text="" />
-		</mx:Canvas>
-		
 		<mx:Canvas label="Events and Assignments">
 			<mx:DataGrid id="eventsAssignments"
 				x="10" y="0"
@@ -156,6 +148,15 @@ Preferences datagrid -->
 				<mx:Button label="Add Item" click="addItem();" />
 				<mx:Button label="Remove Item" click="deleteItem(event);" />
 			</mx:HBox>
+		</mx:Canvas>
+		
+		<mx:Canvas label="Notes">
+			<mx:Label x="10" width="100%" color="black" text="Type random notes, thoughts or anything else in this autosaving box." />
+			<mx:TextArea id="notesArea"
+				x="10" y="20"
+				width="500" height="200"
+				verticalScrollPolicy="auto"
+				text="" />
 		</mx:Canvas>
 		
 		<mx:Canvas label="Preferences">
