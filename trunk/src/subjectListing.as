@@ -60,6 +60,7 @@ private function readPeriods():void {
 		}
 	}
 	cleanupXML();
+	getSubjectsList();
 	timeTable = XML(curDisplay.toXMLString());
 }
 
