@@ -29,6 +29,7 @@ public function readAll():void {
 	displayPeriods();
 	
 	runTimer();
+	updateAllSubjects();
 }
 
 public function writeAll():void {

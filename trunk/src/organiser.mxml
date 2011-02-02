@@ -29,6 +29,7 @@ Description:	Main file which controls layout of the application and includes scr
 		include "timeTableChange.as"
 		include "sidebar.as"
 		include "events.as"
+		include "home.as"
 	]]>
 </mx:Script>
 
@@ -58,6 +59,7 @@ Preferences datagrid -->
 		<mx:dataProvider>
 			<mx:String></mx:String>
 			<mx:String>Ag</mx:String>
+			<mx:String>Crs</mx:String>
 			<mx:String>Com</mx:String>
 			<mx:String>Dra</mx:String>
 			<mx:String>DT</mx:String>
@@ -108,7 +110,15 @@ Preferences datagrid -->
 		
 		<mx:Canvas label="Home">
 			<mx:Image source="@Embed(source='../assets/homebg-rev1.png')" x="20" />
-			<mx:List id="subjectInfoSelector" dataProvider="{subjectsList}" x="20" y="240" width="50" height="125" />
+			<mx:DataGrid dataProvider="{latestHomeWork}"
+				editable="false"
+				rowCount="5"
+				x="20" y="40">
+				<mx:columns>
+					<mx:DataGridColumn dataField="subject" headerText="Subject" width="100" />
+					<mx:DataGridColumn dataField="lastEntry" headerText="Last Task" width="475" />
+				</mx:columns>
+			</mx:DataGrid>
 		</mx:Canvas>
 				
 		<mx:Canvas label="Diary">
@@ -118,7 +128,7 @@ Preferences datagrid -->
 				dataProvider="{curDayTasks.period}" 
 				editable="true"
 				rowCount="8"
-				itemEditEnd="writeDayTasks();"
+				itemEditEnd="writeDayTasks();updateAllSubjects();"
 				draggableColumns="false"
 				resizableColumns="false"
 				sortableColumns="false"	>
@@ -196,7 +206,7 @@ Preferences datagrid -->
 				</mx:columns>
 			</mx:DataGrid>
 			
-			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();updateEntries();cleanupXML();" x="10" y="340"/>
+			<mx:Button id="saveNamePrefsButton" label="Save" click="saveUserDetails();updateEntries();cleanupXML();updateAllSubjects();" x="10" y="340"/>
 		</mx:Canvas>
 		
 	</mx:TabNavigator>

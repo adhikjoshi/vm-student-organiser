@@ -11,8 +11,11 @@ public var subjectsList:Array;
 // given a Date object, deletes all days after the given day
 // inclusive!
 private function deleteAllAfterDate(dateToDelete:Date):void {
-	for(var i:Number = getDayIndex(dateToDelete,true);i < entries.day.length();i++) {
-		entries.day[i].setName("toBeDeleted");
+	var todayString:String = dateToString(new Date);
+	for(var i:Number=0;i<entries.day.length();i++) {
+		if(entries.day[i].attributes("date") >= todayString) {
+			entries.day[i].setName("toBeDeleted");
+		}
 	}
 	delete entries.toBeDeleted;
 }
