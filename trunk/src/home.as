@@ -7,12 +7,14 @@
 public var latestHomeWork:Array;
 
 private function updateAllSubjects():void {
-	subjectsList.sort();
-
-	latestHomeWork = new Array();
-	for each (var subjectName:String in subjectsList) {
-		findLastEntry(subjectName);
-	}
+  if(subjectsList.length > 0) {
+     subjectsList.sort();
+  
+     latestHomeWork = new Array();
+     for each (var subjectName:String in subjectsList) {
+        findLastEntry(subjectName);
+     }
+  }
 }
 
 private function findLastEntry(subjectName:String):void {
