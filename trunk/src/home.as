@@ -7,20 +7,20 @@
 public var latestHomeWork:Array;
 
 private function updateAllSubjects():void {
-  if(subjectsList.length > 0) {
-     subjectsList.sort();
+	if(subjectsList.length > 0) {
+		subjectsList.sort();
   
-     latestHomeWork = new Array();
-     for each (var subjectName:String in subjectsList) {
-        findLastEntry(subjectName);
-     }
-  }
+	    latestHomeWork = new Array();
+    	for each (var subjectName:String in subjectsList) {
+        	findLastEntry(subjectName); 
+	    }
+	}
 }
 
 private function findLastEntry(subjectName:String):void {
 	var todayDate:Date = new Date;
 	var todayIndex = getDayIndex(todayDate,false);
-
+	
 	for(var j:Number=todayIndex;j>=0;j--) {
 		for(var i:Number=0;i<entries.day[j].period.length();i++) {
 			if(entries.day[j].period[i].subject == subjectName) {

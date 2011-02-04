@@ -39,3 +39,9 @@ Events/Assignments
 -Fields are Name (Text), Date (DatePicker), Type (event/Assignment; combobox)
 -Shade past events/assignments differently
 -On creation complete, set verticalScrollPosition to the beginning of the next current event
+
+To Ask Zhao
+===========
+-Confirm assignments/events is next week
+-Ask for new content shadow
+-If no assignments/events should display 'no assignments/events' or just blank (preferred)
