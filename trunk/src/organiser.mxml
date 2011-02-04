@@ -48,8 +48,8 @@ Description:	Main file which controls layout of the application and includes scr
 
 <mx:Text id="sideBarText" x="57" y="158" width="205" height="400" fontFamily="MyriadPro" fontSize="20" selectable="false" />
 
-<!-- content pane shadow
-<mx:Image source="@Embed(source='../assets/contentshadow-rev1.png')" x="256" y="147" />-->
+<!-- content pane shadow -->
+<mx:Image source="@Embed(source='../assets/contentshadow-rev2.png')" x="257" y="147" />
 
 <!-- component for the itemEditor used in the
 Preferences datagrid -->
