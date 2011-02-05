@@ -25,7 +25,7 @@ private function findLastEntry(subjectName:String):void {
 		for(var j:Number=todayIndex;j>=0;j--) {
 			for(var i:Number=0;i<entries.day[j].period.length();i++) {
 				if(entries.day[j].period[i].subject == subjectName && entries.day[j].period[i].tasks != "") {
-					latestHomeWork.push({subject:subjectName, lastEntry:entries.day[j].period[i].tasks});
+					latestHomeWork.push({subject:subjectName, lastEntry:entries.day[j].period[i].tasks, dateSet:entries.day[j].attribute("date")});
 					return;
 				}
 			}
