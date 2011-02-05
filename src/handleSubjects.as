@@ -79,15 +79,11 @@ public function changeDate(selectedDate:Date):void {
 }
 
 public function changePrevDay():void {
-	var dateToChangeTo:Date = dateSelector.selectedDate;
-	dateToChangeTo.setDate(dateToChangeTo.getDate()-1);
-	changeDate(dateToChangeTo);
+	changeDate(new Date(dateSelector.selectedDate.time - MS_PER_DAY + 1));
 }
 
 public function changeNextDay():void {
-	var dateToChangeTo:Date = dateSelector.selectedDate;
-	dateToChangeTo.setDate(dateToChangeTo.getDate()+1);
-	changeDate(dateToChangeTo);
+	changeDate(new Date(dateSelector.selectedDate.time + MS_PER_DAY));
 }
 
 public function changeToday():void {
