@@ -33,6 +33,7 @@ Term and Week Input
 Drag and drop timetable edit
 Assignment details on home popup (add from assignment view)
 Tooltips on Datagrid Rollover to see the cell's entire contents
+Checkbox for homework done
 
 Events/Assignments
 ==================

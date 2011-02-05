@@ -32,6 +32,13 @@ public function readAll():void {
 	updateAllSubjects();
 	
 	getUpcomingEvents();
+	
+	getSelectedDateDetails();
+	
+	// autosort
+	eventsAssignments.dispatchEvent(new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, true, 2, null, 0, null, null, 0));
+	nextWeekAssignments.dispatchEvent(new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, true, 1, null, 0, null, null, 0));
+	nextWeekEvents.dispatchEvent(new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, true, 1, null, 0, null, null, 0));
 }
 
 public function writeAll():void {

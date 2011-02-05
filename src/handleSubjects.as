@@ -75,6 +75,7 @@ public function changeDate(selectedDate:Date):void {
 		dateSelector.selectedDate = selectedDate;
 		getDayTasks(getDayIndex(selectedDate,false));
 	}
+	getSelectedDateDetails();
 }
 
 public function changePrevDay():void {
@@ -91,4 +92,17 @@ public function changeNextDay():void {
 
 public function changeToday():void {
 	changeDate(new Date);
+}
+
+public function getSelectedDateDetails():void {
+	var selectedYearIndex:Number = getYearIndex(dateSelector.selectedDate);
+	var selectedTermIndex:Number = getTermIndex(selectedYearIndex,dateSelector.selectedDate,false);
+	
+	if(selectedTermIndex == refFile.year[selectedYearIndex].term.length()) {
+		selectedDateInfo.text = getDayNameString(dateSelector.selectedDate) + " Holidays " + String(dateSelector.selectedDate.getFullYear());
+	} else {
+		var selectedDateRef:Object = getRefDate(dateSelector.selectedDate);
+		var selectedDateWeekDetails:Object = findWeekDetails(selectedDateRef.rDate, selectedDateRef.rType, dateSelector.selectedDate);
+		selectedDateInfo.text = getDayNameString(dateSelector.selectedDate) + " Term " + String(selectedTermIndex+1) + ", Week " + String(selectedDateWeekDetails.weekNum) + getWeekTypeString(selectedDateWeekDetails.weekType) + " " + String(dateSelector.selectedDate.getFullYear());
+	}
 }
