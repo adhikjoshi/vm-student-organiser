@@ -36,6 +36,7 @@ Tooltips on Datagrid Rollover to see the cell's entire contents
 Checkbox for homework done
 Due Date for homework
 Change Timeframe for assignments/events
+Have preference chooser for chooing DSOT
 
 Events/Assignments
 ==================
