@@ -6,6 +6,16 @@ import flash.filesystem.*
 [Bindable]
 private var events:ArrayCollection;
 
+[Bindable]
+private var upcomingEvents:ArrayCollection;
+
+[Bindable]
+private var upcomingAssignments:ArrayCollection;
+
+private const MS_PER_DAY:uint = 1000 * 60 * 60 * 24;
+
+public var eventsDayLength = 7;
+
 private var eventsFile:String = "Organiser/events.txt";
 
 private function readEvents():void {
@@ -47,4 +57,24 @@ public function deleteItem(event:MouseEvent):void {
 		events.removeItemAt(eventsAssignments.selectedIndex);
 		events.refresh();
 	}
+}
+
+private function getUpcomingEvents():void {
+	upcomingAssignments = new ArrayCollection;
+	upcomingEvents = new ArrayCollection;
+
+	var todayDate:Date = new Date;
+	for each(var curEvent:Object in events) {
+		if(dateToString(curEvent.date) >= dateToString(todayDate)) {
+			if(findDayDifference(todayDate, curEvent.date) <= eventsDayLength) {
+				if(curEvent.type == "Assignment") {
+					upcomingAssignments.addItem({name:curEvent.name, date:dateToAusString(curEvent.date)});
+				} else if(curEvent.type == "Event") {
+					upcomingEvents.addItem({name:curEvent.name, date:dateToAusString(curEvent.date)});
+				}
+			}
+		}
+	}
+	upcomingAssignments.refresh();
+	upcomingEvents.refresh();
 }

@@ -12,20 +12,22 @@ private function updateAllSubjects():void {
   
 	    latestHomeWork = new Array();
     	for each (var subjectName:String in subjectsList) {
-        	findLastEntry(subjectName); 
+        	findLastEntry(subjectName);
 	    }
 	}
 }
 
 private function findLastEntry(subjectName:String):void {
 	var todayDate:Date = new Date;
-	var todayIndex = getDayIndex(todayDate,false);
+	var todayIndex = getDayIndex(todayDate,true);
 	
-	for(var j:Number=todayIndex;j>=0;j--) {
-		for(var i:Number=0;i<entries.day[j].period.length();i++) {
-			if(entries.day[j].period[i].subject == subjectName) {
-				latestHomeWork.push({subject:subjectName, lastEntry:entries.day[j].period[i].tasks});
-				return;
+	if(todayIndex < entries.day.length()) {
+		for(var j:Number=todayIndex;j>=0;j--) {
+			for(var i:Number=0;i<entries.day[j].period.length();i++) {
+				if(entries.day[j].period[i].subject == subjectName && entries.day[j].period[i].tasks != "") {
+					latestHomeWork.push({subject:subjectName, lastEntry:entries.day[j].period[i].tasks});
+					return;
+				}
 			}
 		}
 	}
