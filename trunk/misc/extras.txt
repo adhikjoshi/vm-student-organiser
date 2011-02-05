@@ -24,7 +24,7 @@ Change line metrics so that bars/pipes line up (sidebar)
 Link notes to individual periods
 Add full names of periods
 Desktop shortcuts
-Shading of events
+Shading of events (past)
 Autoscroll to next event
 Delete events
 Refactor code that uses XML for storage (use JSON and read/writeObject instead)
@@ -32,6 +32,7 @@ Multiple Remove on Events/Assignments
 Term and Week Input
 Drag and drop timetable edit
 Assignment details on home popup (add from assignment view)
+Tooltips on Datagrid Rollover to see the cell's entire contents
 
 Events/Assignments
 ==================
@@ -42,6 +43,9 @@ Events/Assignments
 
 To Ask Zhao
 ===========
--Confirm assignments/events is next week
--Ask for new content shadow
--If no assignments/events should display 'no assignments/events' or just blank (preferred)
+-Can assume that we want the last non-blank piece of hw for home tab/recent hw?
+-How to read long homework in home tab/diary?
+-Include date set in recent homework?
+-Next/Prev Day as well as optionally TODAY, Next Week, Prev Week
+-<day>, <week>, <term>, <year> for selected date?
+-Arrows for buttons

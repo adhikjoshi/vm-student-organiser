@@ -24,6 +24,16 @@ public function dateToString(dateToConvert:Date):String {
 	return String(yearNum) + "/" + padNum(monthNum) + "/" + padNum(dateNum);
 }
 
+// converts a Date object to a (padded)
+// DD/MM/YYYY string
+public function dateToAusString(dateToConvert:Date):String {
+	var dateNum:Number = dateToConvert.getDate();
+	var monthNum:Number = dateToConvert.getMonth() + 1;
+	var yearNum:Number = dateToConvert.getFullYear();
+	
+	return padNum(dateNum) + "/" + padNum(monthNum) + "/" + String(yearNum);
+}
+
 // converts a date object into a string with format
 // <date> <month name> <full year>
 public function getDayString(dateToConvert:Date):String {
@@ -160,3 +170,8 @@ private function getTimeString(dateToConvert:Date):String {
 	return padNum(numberToPad) + "." + padNum(dateToConvert.getMinutes());
 }
 
+// assumes firstDate < secondDate
+private function findDayDifference(firstDate:Date, secondDate:Date):Number {
+	var tempDate:Date = new Date(secondDate.time - firstDate.time);
+	return Math.round((tempDate.time / MS_PER_DAY)+1);
+}

@@ -72,6 +72,23 @@ public function useDate(eventObj:CalendarLayoutChangeEvent):void {
 
 public function changeDate(selectedDate:Date):void {
 	if(selectedDate != null) {
+		dateSelector.selectedDate = selectedDate;
 		getDayTasks(getDayIndex(selectedDate,false));
 	}
+}
+
+public function changePrevDay():void {
+	var dateToChangeTo:Date = dateSelector.selectedDate;
+	dateToChangeTo.setDate(dateToChangeTo.getDate()-1);
+	changeDate(dateToChangeTo);
+}
+
+public function changeNextDay():void {
+	var dateToChangeTo:Date = dateSelector.selectedDate;
+	dateToChangeTo.setDate(dateToChangeTo.getDate()+1);
+	changeDate(dateToChangeTo);
+}
+
+public function changeToday():void {
+	changeDate(new Date);
 }

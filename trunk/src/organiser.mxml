@@ -105,18 +105,38 @@ Preferences datagrid -->
 	<mx:TabNavigator id="contentStack"
 		x="260" y="150"
 		width="690" height="415"
-		selectedIndex="0"
+		selectedIndex="1"
 		creationPolicy="all">
 		
 		<mx:Canvas label="Home">
-			<mx:Image source="@Embed(source='../assets/homebg-rev1.png')" x="20" />
+			<mx:Image source="@Embed(source='../assets/homebg-rev2.png')" x="20" />
 			<mx:DataGrid dataProvider="{latestHomeWork}"
 				editable="false"
 				rowCount="5"
-				x="20" y="40">
+				x="24" y="43">
 				<mx:columns>
 					<mx:DataGridColumn dataField="subject" headerText="Subject" width="100" />
-					<mx:DataGridColumn dataField="lastEntry" headerText="Last Task" width="475" />
+					<mx:DataGridColumn dataField="lastEntry" headerText="Last Task" width="520" />
+				</mx:columns>
+			</mx:DataGrid>
+			
+			<mx:DataGrid dataProvider="{upcomingAssignments}"
+				editable="false"
+				x="24" y="240"
+				rowCount="4">
+				<mx:columns>
+					<mx:DataGridColumn dataField="name" headerText="Name" width="228"/>
+					<mx:DataGridColumn dataField="date" headerText="Date" width="75" />
+				</mx:columns>
+			</mx:DataGrid>
+			
+			<mx:DataGrid dataProvider="{upcomingEvents}"
+				editable="false"
+				x="339" y="240"
+				rowCount="4">
+				<mx:columns>
+					<mx:DataGridColumn dataField="name" headerText="Name" width="228"/>
+					<mx:DataGridColumn dataField="date" headerText="Date" width="75" />
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:Canvas>
@@ -131,13 +151,17 @@ Preferences datagrid -->
 				itemEditEnd="writeDayTasks();updateAllSubjects();"
 				draggableColumns="false"
 				resizableColumns="false"
-				sortableColumns="false"	>
+				sortableColumns="false">
 					
 				<mx:columns>
 					<mx:DataGridColumn dataField="subject" editable="false" headerText="Subject" width="100" />
-					<mx:DataGridColumn dataField="tasks" editable="true" headerText="Tasks" width="475" />
+					<mx:DataGridColumn dataField="tasks" editable="true" headerText="Tasks" width="520" />
 				</mx:columns>
 			</mx:DataGrid>
+			
+			<mx:Button id="prevDayBtn" label="&lt; Day" x="10" y="275" width="100" click="changePrevDay();" />
+			<mx:Button id="todayBtn" label="Today" x="265" y="275" width="100" click="changeToday();" />
+			<mx:Button id="nextDayBtn" label="Day >" x="530" y="275" width="100" click="changeNextDay();" />
 		</mx:Canvas>
 	
 		<mx:Canvas label="Events and Assignments">
@@ -145,7 +169,8 @@ Preferences datagrid -->
 				x="10" y="0"
 				dataProvider="{events}"
 				editable="true"
-				rowCount="8">
+				rowCount="8"
+				itemFocusOut="getUpcomingEvents();">
 				<mx:columns>
 					<mx:DataGridColumn headerText="" editable="false" width="20" />
 					<mx:DataGridColumn dataField="name" headerText="Name" width="355" />
@@ -156,7 +181,7 @@ Preferences datagrid -->
 			
 			<mx:HBox x="10" y="260">
 				<mx:Button label="Add Item" click="addItem();" />
-				<mx:Button label="Remove Item" click="deleteItem(event);" />
+				<mx:Button label="Remove Item" click="deleteItem(event);getUpcomingEvents();" />
 			</mx:HBox>
 		</mx:Canvas>
 		

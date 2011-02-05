@@ -30,6 +30,8 @@ public function readAll():void {
 	
 	runTimer();
 	updateAllSubjects();
+	
+	getUpcomingEvents();
 }
 
 public function writeAll():void {

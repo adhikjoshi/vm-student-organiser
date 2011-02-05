@@ -13,7 +13,7 @@ public var subjectsList:Array;
 private function deleteAllAfterDate(dateToDelete:Date):void {
 	var todayString:String = dateToString(new Date);
 	for(var i:Number=0;i<entries.day.length();i++) {
-		if(entries.day[i].attributes("date") >= todayString) {
+		if(entries.day[i].attribute("date") >= todayString) {
 			entries.day[i].setName("toBeDeleted");
 		}
 	}
