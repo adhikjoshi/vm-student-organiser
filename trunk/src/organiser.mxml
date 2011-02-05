@@ -146,8 +146,6 @@ Preferences datagrid -->
 		</mx:Canvas>
 				
 		<mx:Canvas label="Diary">
-			<mx:Label id="selectedDateInfo" x="10" />
-			<mx:DateField id="dateSelector" x="530" width="100" editable="true" formatString="DD/MM/YYYY" change="useDate(event);" />
 			<mx:DataGrid id="diaryEntries"
 				x="10" y="30"
 				dataProvider="{curDayTasks.period}" 
@@ -164,6 +162,8 @@ Preferences datagrid -->
 				</mx:columns>
 			</mx:DataGrid>
 			
+			<mx:Label id="selectedDateInfo" x="10" />
+			<mx:DateField id="dateSelector" x="530" width="100" editable="true" formatString="DD/MM/YYYY" change="useDate(event);" />
 			<mx:Button id="prevDayBtn" label="&lt; Day" x="10" y="275" width="100" click="changePrevDay();" />
 			<mx:Button id="todayBtn" label="Today" x="265" y="275" width="100" click="changeToday();" />
 			<mx:Button id="nextDayBtn" label="Day &gt;" x="530" y="275" width="100" click="changeNextDay();" />

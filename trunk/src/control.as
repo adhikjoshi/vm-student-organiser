@@ -9,6 +9,8 @@ public function init():void {
 }
 
 public function readAll():void {
+	dateSelector.selectedDate = new Date;
+
 	readSubjectsXML();
 	readNotes();
 	
