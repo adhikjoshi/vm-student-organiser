@@ -1,5 +1,5 @@
 #summary Add your feedback for our project here.
-#labels Phase-Support
+#labels Phase-Support,Featured
 
 = Feedback =
 
